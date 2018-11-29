@@ -1,7 +1,19 @@
 #include "map.h"
-
 #include "globals.h"
 #include "graphics.h"
+
+#define WALL    0
+#define PLANT   1
+#define NPC     2
+#define CAVE    3
+#define Good_Idol    4
+#define Bad_Idol    5
+
+#define No 0
+#define Yes 1
+
+void* KeyGiven = 0;
+void* IdolTaken = 0;
 
 /**
  * The Map structure. This holds a HashTable for all the MapItems, along with
@@ -17,7 +29,7 @@ struct Map {
  * This is a global variable, but can only be access from this file because it
  * is static.
  */
-static Map map;
+static Map maps[2];
 static int active_map;
 
 /**
@@ -26,7 +38,9 @@ static int active_map;
  * This function should uniquely map (x,y) onto the space of unsigned integers.
  */
 static unsigned XY_KEY(int X, int Y) {
-    // TODO: Fix me!
+    
+    unsigned int location = Y * map_width() + X;
+    return location;
 }
 
 /**
@@ -34,28 +48,38 @@ static unsigned XY_KEY(int X, int Y) {
  * unsigned key (the output of XY_KEY) and turns it into a hash value (some
  * small non-negative integer).
  */
-unsigned map_hash(unsigned key)
-{
-    // TODO: Fix me!
+unsigned map_hash(unsigned key) {
+    unsigned int HashValue = key % 50; // 50 tiles, so map each col into its own bucket
+    return HashValue;
 }
 
-void maps_init()
-{
-    // TODO: Implement!    
-    // Initialize hash table
-    // Set width & height
+void maps_init() {
+    Map* thisMap;
+    
+    thisMap = &maps[0];
+    thisMap -> w = 50;
+    thisMap -> h = 50;
+    thisMap -> items = createHashTable(map_hash, 50);
+    
+    thisMap = &maps[1];
+    thisMap -> w = 30;
+    thisMap -> h = 20;
+    thisMap -> items = createHashTable(map_hash, 50);
 }
 
-Map* get_active_map()
-{
-    // There's only one map
-    return &map;
+Map* get_active_map() {
+    return &maps[active_map];
 }
 
 Map* set_active_map(int m)
 {
     active_map = m;
-    return &map;
+    return &maps[active_map];
+}
+
+Map* get_map(int m)
+{
+    return &maps[m];
 }
 
 void print_map()
@@ -72,43 +96,51 @@ void print_map()
         }
         pc.printf("\r\n");
     }
+
+
+int map_width() {
+    Map* map = get_active_map();
+    return map->w;
 }
 
-int map_width()
-{
+int map_height() {
+    Map* map = get_active_map();
+    return map->h;
 }
 
-int map_height()
-{
+int map_area() {
+    Map* map = get_active_map();
+    return (map->w * map->h);
 }
 
-int map_area()
-{
+MapItem* get_north(int x, int y) {
+    MapItem* item = (MapItem*)getItem(get_active_map() -> items, XY_KEY(x, y-1));
+    return item;
 }
 
-MapItem* get_north(int x, int y)
-{
+MapItem* get_south(int x, int y) {
+    MapItem* item = (MapItem*)getItem(get_active_map() -> items, XY_KEY(x, y+1));
+    return item;
 }
 
-MapItem* get_south(int x, int y)
-{
+MapItem* get_east(int x, int y) {
+    MapItem* item = (MapItem*)getItem(get_active_map() -> items, XY_KEY(x+1, y));
+    return item;
 }
 
-MapItem* get_east(int x, int y)
-{
+MapItem* get_west(int x, int y) {
+    MapItem* item = (MapItem*)getItem(get_active_map() -> items, XY_KEY(x-1, y));
+    return item;
 }
 
-MapItem* get_west(int x, int y)
-{
-}
-
-MapItem* get_here(int x, int y)
-{
+MapItem* get_here(int x, int y) {
+    MapItem* item = (MapItem*)getItem(get_active_map() -> items, XY_KEY(x, y));
+    return item;
 }
 
 
-void map_erase(int x, int y)
-{
+void map_erase(int x, int y) {
+    deleteItem(get_active_map() -> items, XY_KEY(x, y));
 }
 
 void add_wall(int x, int y, int dir, int len)
@@ -131,8 +163,57 @@ void add_plant(int x, int y)
     MapItem* w1 = (MapItem*) malloc(sizeof(MapItem));
     w1->type = PLANT;
     w1->draw = draw_plant;
-    w1->walkable = true;
+    w1->walkable = false;
     w1->data = NULL;
     void* val = insertItem(get_active_map()->items, XY_KEY(x, y), w1);
     if (val) free(val); // If something is already there, free it
 }
+
+void add_npc(int x, int y){
+    MapItem* w1 = (MapItem*) malloc(sizeof(MapItem));
+    w1->type = NPC;
+    w1->draw = draw_npc;
+    w1->walkable = false;
+    w1->data = KeyGiven;
+    void* val = insertItem(get_active_map()->items, XY_KEY(x, y), w1);
+    if (val) free(val); // If something is already there, free it
+    }
+void add_cave(int x, int y){
+    MapItem* w1 = (MapItem*) malloc(sizeof(MapItem));
+    w1->type = CAVE;
+    w1->draw = draw_cave;
+    w1->walkable = false;
+    w1->data = NULL;
+    void* val = insertItem(get_active_map()->items, XY_KEY(x, y), w1);
+    if (val) free(val); // If something is already there, free it
+    }
+    
+void add_good_idol(int x, int y){
+    MapItem* w1 = (MapItem*) malloc(sizeof(MapItem));
+    w1->type = Good_Idol;
+    w1->draw = draw_good_idol;
+    w1->walkable = false;
+    w1->data = NULL;
+    void* val = insertItem(get_active_map()->items, XY_KEY(x, y), w1);
+    if (val) free(val); // If something is already there, free it
+    }
+    
+void add_bad_idol(int x, int y){
+    MapItem* w1 = (MapItem*) malloc(sizeof(MapItem));
+    w1->type = Bad_Idol;
+    w1->draw = draw_bad_idol;
+    w1->walkable = false;
+    w1->data = IdolTaken;
+    void* val = insertItem(get_active_map()->items, XY_KEY(x, y), w1);
+    if (val) free(val); // If something is already there, free it
+    }
+    
+void add_Chest(int x, int y){
+    MapItem* w1 = (MapItem*) malloc(sizeof(MapItem));
+    w1->type = CHEST;
+    w1->draw = draw_Chest;
+    w1->walkable = false;
+    w1->data = NULL;
+    void* val = insertItem(get_active_map()->items, XY_KEY(x, y), w1);
+    if (val) free(val); // If something is already there, free it
+    }

@@ -36,8 +36,26 @@ int hardware_init()
     return ERROR_NONE;
 }
 
-GameInputs read_inputs() 
-{
+int last_b1 = 1;
+int last_b2 = 1;
+int last_b3 = 1;
+
+GameInputs read_inputs() {
     GameInputs in;
+
+    int b1_raw = button1.read();
+    int b2_raw = button2.read();
+    int b3_raw = button3.read();
+
+    in.b1 = b1_raw || !last_b1;
+    in.b2 = b2_raw || !last_b2;
+    in.b3 = b3_raw || !last_b3;
+
+    last_b1 = b1_raw;
+    last_b2 = b2_raw;
+    last_b3 = b3_raw;
+
+    acc.readXYZGravity(&in.ax,&in.ay,&in.az);
     return in;
 }
+

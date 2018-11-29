@@ -1,7 +1,6 @@
 #ifndef GRAPHICS_H
 #define GRAPHICS_H
 
-
 /**
  * Draws the player. This depends on the player state, so it is not a DrawFunc.
  */
@@ -29,7 +28,12 @@ void draw_img(int u, int v, const char* img);
 void draw_nothing(int u, int v);
 void draw_wall(int u, int v);
 void draw_plant(int u, int v);
-
+void draw_npc(int u, int v);
+void draw_cave(int u, int v);
+void draw_good_idol(int u, int v);
+void draw_bad_idol(int u, int v);
+void draw_no_idol(int u, int v);
+void draw_Chest(int u, int v);
 /**
  * Draw the upper status bar.
  */

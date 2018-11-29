@@ -4,7 +4,6 @@
 //=============================================
 #ifndef GLOBAL_H
 #define GLOBAL_H
-
 // Include all the hardware libraries
 #include "mbed.h"
 #include "wave_player.h"

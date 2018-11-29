@@ -1,6 +1,6 @@
 /*
- Student Name:
- Date:
+ Student Name: Ethan Jackson
+ Date: 8 November 2018
 
 =======================
 ECE 2035 Project 2-1:
@@ -126,7 +126,14 @@ struct _HashTableEntry {
 * @return The pointer to the hash table entry
 */
 static HashTableEntry* createHashTableEntry(unsigned int key, void* value) {
-
+  HashTableEntry* ThisEntry = (HashTableEntry*)malloc(sizeof(HashTableEntry)); //Gets the space for it
+    if(!ThisEntry){
+      return NULL; //Malloc Null'ed, uh oh
+    }
+    ThisEntry -> value = value; //Stick in value
+    ThisEntry -> key = key; //stick in key
+    ThisEntry -> next = NULL; //make it point to null, per documentation
+    return ThisEntry; //return the pointer, per documentation
 }
 
 /**
@@ -140,7 +147,16 @@ static HashTableEntry* createHashTableEntry(unsigned int key, void* value) {
 * @return The pointer to the hash table entry, or NULL if key does not exist
 */
 static HashTableEntry* findItem(HashTable* hashTable, unsigned int key) {
-
+  //Cases: Either exists or doesn't
+  unsigned int BucketIndex = hashTable -> hash(key); //Finds teh bucket
+  HashTableEntry* ThisEntry = hashTable -> buckets[BucketIndex]; //Gets the head
+  while (ThisEntry) {//While not null pointer
+    if (ThisEntry -> key == key){
+      return ThisEntry;
+    }
+    ThisEntry = ThisEntry -> next;
+  }
+  return NULL;
 }
 
 /****************************************************************************
@@ -167,7 +183,7 @@ HashTable* createHashTable(HashFunction hashFunction, unsigned int numBuckets) {
   newTable->num_buckets = numBuckets;
   newTable->buckets = (HashTableEntry**)malloc(numBuckets*sizeof(HashTableEntry*));
 
-  // As the new buckets are empty, init each bucket as NULL.
+  // As the new buckets contain indeterminant values, init each bucket as NULL.
   unsigned int i;
   for (i=0; i<numBuckets; ++i) {
     newTable->buckets[i] = NULL;
@@ -178,21 +194,70 @@ HashTable* createHashTable(HashFunction hashFunction, unsigned int numBuckets) {
 }
 
 void destroyHashTable(HashTable* hashTable) {
-
+  for (unsigned int i = 0; i < hashTable -> num_buckets; i++){ //Iterate through all buckets
+    HashTableEntry* ThisEntry = hashTable -> buckets[i]; //Get head of that bucket's linked list
+    while (ThisEntry){ //while not null pointer
+      HashTableEntry* EntryToDelete = ThisEntry; //Prepare for free'ing
+      ThisEntry = ThisEntry -> next; //move on to the next entry before losing pointer
+      free(EntryToDelete -> value); //free the value which get's left behind
+      free(EntryToDelete); //free the node
+    }
+  }
+  free(hashTable -> buckets); //free the bucket array
+  free(hashTable); //free everything
 }
 
 void* insertItem(HashTable* hashTable, unsigned int key, void* value) {
-
+  HashTableEntry* ThisEntry = findItem(hashTable, key);
+  if (!ThisEntry){ //Entry doesn't already exist
+    ThisEntry = createHashTableEntry(key, value); //Malloc the space
+    int BucketIndex = hashTable -> hash(key); //Find the right bucket
+    HashTableEntry* PreviousHeadAddress = hashTable -> buckets[BucketIndex]; //Get the previous head's address
+    ThisEntry -> next = PreviousHeadAddress; //Make the incoming head point to the previous head
+    hashTable -> buckets[BucketIndex] = ThisEntry; //Point to new head
+    return NULL;
+  }
+  void* Val = ThisEntry -> value;
+  ThisEntry -> value = value;
+  return Val;
 }
 
 void* getItem(HashTable* hashTable, unsigned int key) {
-
+  //Exists or it doesn't
+  HashTableEntry* ThisEntry = findItem(hashTable, key); //See if it's in the table
+  if (ThisEntry){ //It is!
+    return ThisEntry -> value; //return it's value
+  }
+  return NULL; //Darn, it's not there. Return null per documentation
 }
 
 void* removeItem(HashTable* hashTable, unsigned int key) {
-
+  unsigned int BucketIndex = hashTable -> hash(key); //Find the right bucket
+  HashTableEntry* ThisEntry = hashTable -> buckets[BucketIndex]; //get the head
+  if (ThisEntry == NULL){
+    return ThisEntry;
+  }
+  if (ThisEntry -> key == key){ //deleting the first item
+    hashTable -> buckets[BucketIndex] = ThisEntry -> next; 
+    void* Val = ThisEntry -> value; //save the value to return it
+    free(ThisEntry); // free that boi
+    return Val; //return value per documentation
+  }
+  HashTableEntry* NextEntry = ThisEntry -> next; //get the next entry
+  while (NextEntry){ //while not null
+    if (NextEntry -> key == key){ //is the next one the one to be removed?
+      ThisEntry -> next = NextEntry -> next; //yeah? so update the previous node next attribue
+      void* Val = NextEntry -> value; //save the value to return it
+      free(NextEntry); // free that boi
+      return Val; //return value per documentation
+    }
+    ThisEntry = NextEntry;
+    NextEntry = ThisEntry -> next; //get the next entry
+  }
+  return NULL; //documentation
 }
 
 void deleteItem(HashTable* hashTable, unsigned int key) {
-
+  free(removeItem(hashTable, key)); //removeItem returns a pointer to value, which needs to be freed next
 }
+

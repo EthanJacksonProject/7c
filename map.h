@@ -2,6 +2,17 @@
 #define MAP_H
 
 #include "hash_table.h"
+#define WALL    0
+#define PLANT   1
+#define NPC     2
+#define CAVE    3
+#define CHEST    4
+#define Good_Idol    5
+#define Bad_Idol    6
+
+
+#define No 0
+#define Yes 1
 
 /**
  * A structure to represent the map. The implementation is private.
@@ -53,8 +64,9 @@ typedef struct {
 
 // MapItem types
 // Define more of these!
-#define WALL    0
-#define PLANT   1
+
+
+
 
 /**
  * Initializes the internal structures for all maps. This does not populate
@@ -150,5 +162,11 @@ void add_wall(int x, int y, int dir, int len);
  * before adding the plant.
  */
 void add_plant(int x, int y);
+void add_npc(int x, int y);
+void add_cave(int x, int y);
+void add_good_idol(int x, int y);
+void add_bad_idol(int x, int y);
+void add_no_idol(int x, int y);
+void add_Chest(int x, int y);
 
 #endif //MAP_H
