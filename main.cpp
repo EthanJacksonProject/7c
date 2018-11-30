@@ -48,7 +48,13 @@ struct {
     int has_idol;
     int game_state;
     int Lives;
+    int Fish;
 } Player;
+
+struct {
+    int x,y;    // Current locations
+    int px, py; // Previous locations
+} Spider;
 
 /**
  * Given the game inputs, determine what kind of update needs to happen.
@@ -224,6 +230,26 @@ int update_game(int action)
                 Player.game_state = GAME_OVER;
             }           
             break;
+            if ((Eastern -> type == Fish || Western -> type == Fish || Southern -> type == Fish || Northern -> type == Fish)) {
+                Player.Fish = Player.Fish + 1;
+                if(Eastern -> type == Fish){
+                    map_erase(Player.px, Player.y)
+                    return FULL_DRAW;
+                }
+                if(Western -> type == Fish){
+                    map_erase(Player.px-1, Player.y)
+                    return FULL_DRAW;
+                }
+                
+                if(Southern -> type == Fish){
+                    map_erase(Player.px, Player.y+1)
+                    return FULL_DRAW;
+                }
+                if(Northern -> type == Fish){
+                    map_erase(Player.px, Player.y-1)
+                    return FULL_DRAW;
+                }
+               
         }
 
         case GOD_BUTTON: {
@@ -438,9 +464,7 @@ void init_main_map()
     add_npc(5,5);
     add_cave(7,7);
 
-    add_Rock(1,1);
-    add_Rock(2,12);
-    add_Rock(10, 18);
+    add_Fish(1,1);
 
     print_map();
 }
@@ -531,8 +555,7 @@ int main()
         MapItem* Western = get_west(Player.px, Player.py);
         MapItem* Northern = get_north(Player.px, Player.py);
         if ((Eastern -> type == Rock || Western -> type == Rock || Southern -> type == Rock || Northern -> type == Rock) ){
-            Player.Lives = Player.Lives - 1;}
-        if(Player.Lives == 0){
+            Player.Lives = Player.Lives - 1;
             break;
         }
         // Actuall do the game update:
@@ -548,7 +571,9 @@ int main()
 
         uLCD.locate(0,15);
         uLCD.textbackground_color(OceanDark);
-        uLCD.printf("Health: %2d", Player.Lives);
+        uLCD.printf("Health: %d", Player.Lives);
+        uLCD.locate(8,15);
+        uLCD.printf("Fish: %d/5", Player.Fish);
 
         if (Player.game_state == GAME_OVER)
             break;

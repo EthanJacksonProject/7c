@@ -10,7 +10,7 @@
 #define Good_Idol    5
 #define Bad_Idol    6
 #define Rock    8
-#define Spider  9
+#define Fish  9
 
 
 #define No 0
@@ -171,5 +171,6 @@ void add_bad_idol(int x, int y);
 void add_no_idol(int x, int y);
 void add_Chest(int x, int y);
 void add_Rock(int x, int y);
+void add_Fish(int x, int y);
 
 #endif //MAP_H
