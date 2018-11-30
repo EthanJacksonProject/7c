@@ -96,7 +96,7 @@ void print_map()
         }
         pc.printf("\r\n");
     }
-
+}
 
 int map_width() {
     Map* map = get_active_map();
@@ -192,6 +192,16 @@ void add_good_idol(int x, int y){
     MapItem* w1 = (MapItem*) malloc(sizeof(MapItem));
     w1->type = Good_Idol;
     w1->draw = draw_good_idol;
+    w1->walkable = false;
+    w1->data = NULL;
+    void* val = insertItem(get_active_map()->items, XY_KEY(x, y), w1);
+    if (val) free(val); // If something is already there, free it
+    }
+
+void add_no_idol(int x, int y){
+    MapItem* w1 = (MapItem*) malloc(sizeof(MapItem));
+    w1->type = Good_Idol;
+    w1->draw = draw_no_idol;
     w1->walkable = false;
     w1->data = NULL;
     void* val = insertItem(get_active_map()->items, XY_KEY(x, y), w1);

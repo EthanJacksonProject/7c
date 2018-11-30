@@ -1,0 +1,546 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"remove",
+				"removeItem"
+			],
+			[
+				"num",
+				"num_items"
+			],
+			[
+				"rem",
+				"removeItem"
+			],
+			[
+				"Has",
+				"hashTable"
+			],
+			[
+				"hashtab",
+				"HashTableEntry"
+			],
+			[
+				"Bu",
+				"BucketIndex"
+			],
+			[
+				"Pre",
+				"PreviousHeadAddress"
+			],
+			[
+				"Buck",
+				"BucketIndex"
+			],
+			[
+				"Creat",
+				"createHashTableEntry"
+			],
+			[
+				"has",
+				"hashTable"
+			],
+			[
+				"Va",
+				"value"
+			],
+			[
+				"Hash",
+				"HashTableEntry"
+			],
+			[
+				"Num",
+				"num_buckets"
+			],
+			[
+				"THis",
+				"ThisEntry"
+			],
+			[
+				"this",
+				"ThisEntry"
+			],
+			[
+				"This",
+				"ThisEntry"
+			],
+			[
+				"End",
+				"EndKnownSquare"
+			],
+			[
+				"Ed",
+				"EndKnownSquare"
+			],
+			[
+				"En",
+				"EndKnownSquare"
+			],
+			[
+				"nei",
+				"NeighborIndex"
+			],
+			[
+				"Flag",
+				"FlagAll"
+			],
+			[
+				"Ne",
+				"Neighbors"
+			],
+			[
+				"No",
+				"NoWest"
+			],
+			[
+				"Re",
+				"Reiterate"
+			],
+			[
+				"Iter",
+				"IterateRow"
+			],
+			[
+				"Check",
+				"CheckRow"
+			],
+			[
+				"cu",
+				"currentIndex"
+			],
+			[
+				"thes",
+				"theseNeighbors"
+			],
+			[
+				"Nei",
+				"NeighborArray"
+			],
+			[
+				"the",
+				"theseNeighbors"
+			],
+			[
+				"Ro",
+				"RowIndices"
+			],
+			[
+				"Col",
+				"ColIndices"
+			],
+			[
+				"col",
+				"colInd"
+			],
+			[
+				"Cu",
+				"currentI"
+			],
+			[
+				"these",
+				"theseNeighborIndices"
+			],
+			[
+				"curr",
+				"currentIndex"
+			],
+			[
+				"my",
+				"myArray"
+			],
+			[
+				"Botto",
+				"BottomRight"
+			],
+			[
+				"Bottom",
+				"BottomLeft"
+			],
+			[
+				"addi",
+				"add_immediate\t$t = $s + C (signed)"
+			],
+			[
+				"Bott",
+				"BottomRight"
+			],
+			[
+				"Bot",
+				"BottomLeft"
+			],
+			[
+				"Top",
+				"TopRight"
+			],
+			[
+				"intensity",
+				"intensity3"
+			],
+			[
+				"Current",
+				"CurrentN"
+			],
+			[
+				"Max",
+				"MaxMin3"
+			],
+			[
+				"Curren",
+				"CurrentLow"
+			],
+			[
+				"Cur",
+				"CurrentHigh"
+			],
+			[
+				"Right",
+				"RightGet"
+			],
+			[
+				"LEft",
+				"LeftGet"
+			],
+			[
+				"Confi",
+				"ConfidenceValues"
+			],
+			[
+				"Lon",
+				"longestEmployee"
+			],
+			[
+				"Long",
+				"LongYear"
+			],
+			[
+				"longest",
+				"longestEmployee"
+			],
+			[
+				"Q",
+				"QuizPercentage"
+			],
+			[
+				"out",
+				"out2"
+			],
+			[
+				"FIna",
+				"FinalExam"
+			],
+			[
+				"Grade",
+				"GradeNeeded"
+			],
+			[
+				"GRa",
+				"GradeNeeded"
+			],
+			[
+				"Grad",
+				"GradeNeeded"
+			],
+			[
+				"get",
+				"getElementById"
+			],
+			[
+				"HW",
+				"HWPercentage"
+			],
+			[
+				"text",
+				"text-align"
+			],
+			[
+				"border",
+				"border-radius"
+			],
+			[
+				"font",
+				"font-family"
+			],
+			[
+				"background",
+				"background-image"
+			],
+			[
+				"Ca",
+				"calculate"
+			],
+			[
+				"Final",
+				"FinalExam"
+			],
+			[
+				"Part",
+				"Partpercentage"
+			],
+			[
+				"Quiz",
+				"QuizPercentage"
+			],
+			[
+				"Hw",
+				"HWPercentage"
+			],
+			[
+				"Test",
+				"TestPercentage"
+			],
+			[
+				"Extra",
+				"ExtraCredit"
+			],
+			[
+				"P",
+				"ParPer"
+			],
+			[
+				"T",
+				"TestPercentage"
+			],
+			[
+				"Te",
+				"TestPercentage"
+			],
+			[
+				"va",
+				"value"
+			],
+			[
+				"TestP",
+				"TestPer"
+			],
+			[
+				"ge",
+				"getElementById"
+			],
+			[
+				"fr",
+				"firstname"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"Package Control: ",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 0.0
+	},
+	"console":
+	{
+		"height": 0.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/Users/ethanjackson/Downloads/New Piskel.c",
+		"/Users/ethanjackson/Downloads/tests_for_different_os/all_tests_mac/hash_table.c",
+		"/Users/ethanjackson/Desktop/p2-1/ht_tests.cpp",
+		"/Users/ethanjackson/Desktop/lab9.py",
+		"/Users/ethanjackson/Downloads/MagForceShell.py",
+		"/Users/ethanjackson/2035/Project1/P2/P1-2.asm",
+		"/Users/ethanjackson/2035/Project1/Project1.asm",
+		"/Users/ethanjackson/2035/Project1/FinalAttemptBackup.asm",
+		"/Users/ethanjackson/2035/Project1/Test.asm",
+		"/Users/ethanjackson/2035/Project1/Shell.asm",
+		"/Users/ethanjackson/2035/Project1/P1/P1-1.c",
+		"/Users/ethanjackson/Desktop/Lab6.py",
+		"/Users/ethanjackson/Downloads/VP_shell.py",
+		"/Users/ethanjackson/2035/Project1/P1-1.c",
+		"/Users/ethanjackson/2035/Project1/minefield.h",
+		"/Users/ethanjackson/Downloads/StarterCode_chargedRod.py",
+		"/Users/ethanjackson/2035/HW2/2/HW2-2-shell.asm.txt",
+		"/Users/ethanjackson/2035/HW2/2/HW2-2.asm",
+		"/Users/ethanjackson/2035/HW2/2/newHW2-2.asm",
+		"/Users/ethanjackson/2035/HW2/1/HW2-1.c",
+		"/Users/ethanjackson/Desktop/struct_example.c",
+		"/Users/ethanjackson/2035/HW2/1/HW2-1-shell.c",
+		"/Users/ethanjackson/Desktop/2035/HW1/HW1-3.asm",
+		"/Users/ethanjackson/Downloads/HW1-2-shell.c",
+		"/Users/ethanjackson/Desktop/lab2.py",
+		"/Users/ethanjackson/Downloads/spheres-2.py",
+		"/Users/ethanjackson/Desktop/2035/hello.c",
+		"/Users/ethanjackson/Downloads/spheres.py",
+		"/Users/ethanjackson/Desktop/spheres.py",
+		"/Users/ethanjackson/Downloads/p5/empty-example/index.html",
+		"/Users/ethanjackson/Downloads/p5/p5.js",
+		"/Users/ethanjackson/python/websiteTest.py",
+		"/Users/ethanjackson/Documents/GitHub/EthanJacksonProject.github.io/index.html",
+		"/Users/ethanjackson/Desktop/sigHTML.txt",
+		"/Users/ethanjackson/python/Roster.py",
+		"/Users/ethanjackson/python/People.py",
+		"/Users/ethanjackson/python/playground.py",
+		"/Users/ethanjackson/python/testClass.py",
+		"/Users/ethanjackson/python/hw.py",
+		"/Users/ethanjackson/python/8.py",
+		"/Users/ethanjackson/Desktop/test.py",
+		"/Users/ethanjackson/python/inputTest.py",
+		"/Users/ethanjackson/python/add.py",
+		"/Users/ethanjackson/OneDrive/python_work/Exercise Files/My Practice/inscribe.py",
+		"/Users/ethanjackson/Desktop/Test.py",
+		"/Users/ethanjackson/Desktop/3dSpringDrag.py",
+		"/Users/ethanjackson/python/separate.py",
+		"/Users/ethanjackson/OneDrive/Spring 2018/Physics/vectors.py",
+		"/Users/ethanjackson/Downloads/903310299.WOVENportfolio/leap2a.xml",
+		"/Users/ethanjackson/Downloads/Game Design Process.xml",
+		"/Volumes/~ejackson63/public_html/index.html",
+		"/Users/ethanjackson/OneDrive/python_work/name.py",
+		"/Users/ethanjackson/OneDrive/python_work/hello_world.py",
+		"/Users/ethanjackson/Library/Application Support/Sublime Text 3/Packages/User/Python3.sublime-build"
+	],
+	"find":
+	{
+		"height": 26.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 26.0
+	},
+	"input":
+	{
+		"height": 0.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 291.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "4DGL-uLCD-SE.sublime-project",
+	"replace":
+	{
+		"height": 48.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 150.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
