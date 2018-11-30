@@ -477,12 +477,12 @@ int main()
     Player.x = Player.y = 3;
 
     draw_Screen();
-    while(1)
+    while(1){
         GameInputs inputs = read_inputs();       
         int action = get_action(inputs);
         if (action == ACTION_BUTTON)
             break;
-
+    }
     // Initial drawing
     draw_game(true);
 
