@@ -503,7 +503,7 @@ int main()
             ani = !ani;
             wait_ms(500);
         } else{
-            uLCD.filled_rectangle(0, 48, 127, 70, OceanLight);
+            uLCD.filled_rectangle(0, 48, 127, 70, OceanDark);
             wait_ms(500);
             ani = !ani;
         }
