@@ -47,6 +47,7 @@ struct {
     int px, py; // Previous locations
     int has_key;
     int has_idol;
+    int has_cave;
     int game_state;
     int Lives;
     int Fishes;
@@ -153,7 +154,7 @@ int update_game(int action)
             MapItem* Southern = get_south(Player.px, Player.py);
             MapItem* Western = get_west(Player.px, Player.py);
             MapItem* Northern = get_north(Player.px, Player.py);
-            if (((Eastern -> type == CAVE) || (Western -> type == CAVE) || (Southern -> type == CAVE) || (Northern -> type == CAVE)) && Player.game_state > 1) {
+            if (((Eastern -> type == CAVE) || (Western -> type == CAVE) || (Southern -> type == CAVE) || (Northern -> type == CAVE)) && Player.has_cave == Yes) {
                 if(get_active_map() == (get_map(1))){
                     set_active_map(0);
                     Player.x = 8;
@@ -201,7 +202,7 @@ int update_game(int action)
                     line1 = "a treasure";
                     Line2 = "beyond belief...";
                     speech(line1, Line2);
-                    Player.game_state = 100;
+                    Player.has_cave = Yes;
                     return FULL_DRAW;
                 }
             }
@@ -569,7 +570,7 @@ int main()
         if (Player.game_state == GAME_OVER)
             break;
         switch (updates){
-            case REDRAW:{}
+            case REDRAW:{
                 draw_game(false);
                 break;}
             case FULL_DRAW:{
