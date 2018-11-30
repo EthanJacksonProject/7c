@@ -323,7 +323,7 @@ int update_game(int action)
                     return FULL_DRAW;
                 }
             }
-            if ((Eastern -> type == CHEST || Western -> type == CHEST || Southern -> type == CHEST || Northern -> type == CHEST) && Player.has_key == true){
+            if ((Eastern -> type == CHEST || Western -> type == CHEST || Southern -> type == CHEST || Northern -> type == CHEST) ){
                 Player.game_state = GAME_OVER;
             }           
             break;
@@ -551,6 +551,7 @@ int main()
         int dt = t.read_ms();
         if (dt < 100) wait_ms(100 - dt);
     }
+    
     uLCD.filled_rectangle(0,0,127,127, 0x064273);
     uLCD.color(WHITE);
     uLCD.textbackground_color(OceanLight);
@@ -561,6 +562,7 @@ int main()
     uLCD.printf("Treasure");
     uLCD.locate(1,6);
     uLCD.printf("Found!");
+
     AnalogOut DACout(p18);
     wave_player waver(&DACout);
     FILE *wave_file;
