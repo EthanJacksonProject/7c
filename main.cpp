@@ -487,17 +487,9 @@ int main()
     uLCD.color(WHITE);
     uLCD.textbackground_color(OceanLight);
     int ani = 0;
-    int played = 0;
+    
     while(1){
-        if (!played){
-            AnalogOut DACout(p18);
-            wave_player waver(&DACout);
-            FILE *wave_file;
-            wave_file=fopen("/sd/test.wav","r");
-            waver.play(wave_file);
-            fclose(wave_file);
-            played = 1;
-        }
+        
         uLCD.locate(2, 2);
         uLCD.text_width(2);
         uLCD.text_height(2);
@@ -559,9 +551,22 @@ int main()
         int dt = t.read_ms();
         if (dt < 100) wait_ms(100 - dt);
     }
-    uLCD.locate(0,0);
-    uLCD.textbackground_color(OceanDark);
-    uLCD.printf("Treasure Found");
+    uLCD.filled_rectangle(0,0,127,127, 0x064273);
+    uLCD.color(WHITE);
+    uLCD.textbackground_color(OceanLight);
+    uLCD.text_width(2);
+    uLCD.text_height(2);
+    uLCD.text_bold(true);
+    uLCD.locate(1,5);
+    uLCD.printf("Treasure");
+    uLCD.locate(1,6);
+    uLCD.printf("Found!");
+    AnalogOut DACout(p18);
+    wave_player waver(&DACout);
+    FILE *wave_file;
+    wave_file=fopen("/sd/test.wav","r");
+    waver.play(wave_file);
+    fclose(wave_file);
 }
 
 
