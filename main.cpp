@@ -104,6 +104,8 @@ int update_game(int action)
     // Save player previous location before updating
     Player.px = Player.x;
     Player.py = Player.y;
+    char* line1;
+    char* Line2;
     
     // Do different things based on the each action.
     // You can define functions like "go_up()" that get called for each case.
@@ -174,8 +176,8 @@ int update_game(int action)
                     Player.has_key = Yes;
                     return FULL_DRAW;
                 } else {
-                    char* line1 = "Ahoy, Matey!";
-                    char* Line2 = "Thar be a fake...";
+                    line1 = "Ahoy, Matey!";
+                    Line2 = "Thar be a fake...";
                     speech(line1, Line2);
                     line1 = "idol in that thar";
                     Line2 = "cave! Bring it...";
@@ -192,6 +194,18 @@ int update_game(int action)
             }
             if ((Eastern -> type) == Bad_Idol || Western -> type == Bad_Idol || Southern -> type == Bad_Idol || Northern -> type == Bad_Idol){
                 Player.has_idol = Yes;
+                line1 = "The False Idol!";
+                Line2 = "an ancient script";
+                speech(line1, Line2);
+                line1 = "reads, 'True";
+                Line2 = "value lies in";
+                speech(line1, Line2);
+                line1 = "difference...";
+                Line2 = "This must be";
+                speech(line1, Line2);
+                line1 = "worth a lot";
+                Line2 = "to that man!";
+                speech(line1, Line2);
                 add_no_idol(8,8);
                 return FULL_DRAW;
             }
