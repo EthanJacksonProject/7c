@@ -22,7 +22,7 @@
 #define GO_UP 5
 #define GO_DOWN 6
 #define GOD_BUTTON 7
-#define GAME_OVER 10
+
 
 
 //void* KeyGiven = 0;
@@ -419,8 +419,9 @@ void init_quest_map()
 {
     Map* map = set_active_map(1);
 
-    add_good_idol(3,3);
-    add_good_idol(7,5);
+    for(int i = map_width() + 3; i < map_area(); i += 9){
+        add_good_idol(i % map_width(), i / map_width());
+    }
     
     add_bad_idol(8,8);
 
