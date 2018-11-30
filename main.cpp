@@ -478,16 +478,19 @@ int main()
 
     uLCD.filled_rectangle(0,0,127,127, 0x064273);
     line1 = "7 C's";
-    uLCD.locate(6, 4);
-    uLCD.text_width(3);
-    uLCD.text_height(3);
     uLCD.color(WHITE);
-    Line2 = "An Adventure Game"
+    Line2 = "An Okay Game";
     uLCD.textbackground_color(OceanLight);
     while(1){
+        uLCD.locate(0,0);
+        uLCD.locate(2, 4);
+        uLCD.text_width(3);
+        uLCD.text_height(3);
         uLCD.printf(line1);
         uLCD.locate(0,0);
         uLCD.locate(1,12);
+        uLCD.text_width(1);
+        uLCD.text_height(1);
         uLCD.printf(Line2);
         GameInputs inputs = read_inputs();       
         int action = get_action(inputs);
