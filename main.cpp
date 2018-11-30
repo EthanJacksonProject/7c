@@ -491,7 +491,7 @@ int main()
         uLCD.text_height(2);
         uLCD.locate(1,5);
         uLCD.printf("An Okay");
-        uLCD.locate(2,6);
+        uLCD.locate(1,6);
         uLCD.printf(" Game! ");
         GameInputs inputs = read_inputs();      
         int action = get_action(inputs);
@@ -503,7 +503,7 @@ int main()
             ani = !ani;
             wait_ms(500);
         } else{
-            uLCD.filled_rectangle(0, 50, 127, 70, WHITE);
+            uLCD.filled_rectangle(0, 48, 127, 70, OceanLight);
             wait_ms(500);
             ani = !ani;
         }
