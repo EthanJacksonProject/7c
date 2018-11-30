@@ -469,8 +469,8 @@ void init_main_map()
     add_cave(7,7);
 
     add_Fish(12,20);
-    add_Fish(13,23);
-    add_Fish(11,17);
+    add_Fish(15,23);
+    add_Fish(11,25);
     add_Fish(10,20);
     add_Fish(13,20);
 
