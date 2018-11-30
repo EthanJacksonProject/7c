@@ -34,6 +34,7 @@ void draw_good_idol(int u, int v);
 void draw_bad_idol(int u, int v);
 void draw_no_idol(int u, int v);
 void draw_Chest(int u, int v);
+void draw_Rock(int u, int v);
 void draw_Screen();
 /**
  * Draw the upper status bar.

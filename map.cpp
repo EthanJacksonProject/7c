@@ -4,6 +4,7 @@
 
 void* KeyGiven = 0;
 void* IdolTaken = 0;
+void* Harmful = 0;
 
 /**
  * The Map structure. This holds a HashTable for all the MapItems, along with
@@ -212,6 +213,16 @@ void add_Chest(int x, int y){
     MapItem* w1 = (MapItem*) malloc(sizeof(MapItem));
     w1->type = CHEST;
     w1->draw = draw_Chest;
+    w1->walkable = false;
+    w1->data = NULL;
+    void* val = insertItem(get_active_map()->items, XY_KEY(x, y), w1);
+    if (val) free(val); // If something is already there, free it
+    }
+
+void add_Rock(int x, int y){
+    MapItem* w1 = (MapItem*) malloc(sizeof(MapItem));
+    w1->type = Rock;
+    w1->draw = draw_Rock;
     w1->walkable = false;
     w1->data = NULL;
     void* val = insertItem(get_active_map()->items, XY_KEY(x, y), w1);

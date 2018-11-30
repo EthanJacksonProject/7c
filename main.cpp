@@ -13,6 +13,7 @@
 #define CHEST    4
 #define Good_Idol    5
 #define Bad_Idol    6
+#define Rock    8
 #define No 0
 #define Yes 1
 #define NO_ACTION 0
@@ -46,6 +47,7 @@ struct {
     int has_key;
     int has_idol;
     int game_state;
+    int Lives;
 } Player;
 
 /**
@@ -435,6 +437,8 @@ void init_main_map()
     add_plant(18,10);
     add_npc(5,5);
     add_cave(7,7);
+
+    add_Rock(9,9);
     print_map();
 }
 void init_quest_map()
@@ -480,7 +484,7 @@ int main()
     uLCD.color(WHITE);
     uLCD.textbackground_color(OceanLight);
     int ani = 0;
-    
+    Player.Lives = 3;
     while(1){
         
         uLCD.locate(2, 2);
@@ -519,7 +523,14 @@ int main()
     while(1) {
         // Timer to measure game update speed
         Timer t; t.start();
-        
+        MapItem* Eastern = get_east(Player.px, Player.py);
+        MapItem* Southern = get_south(Player.px, Player.py);
+        MapItem* Western = get_west(Player.px, Player.py);
+        MapItem* Northern = get_north(Player.px, Player.py);
+        if ((Eastern -> type == Rock || Western -> type == Rock || Southern -> type == Rock || Northern -> type == Rock) ){
+            Player.Lives = Player.Lives - 1;
+        if(Player.Lives == 0)
+            break;
         // Actuall do the game update:
         // 1. Read inputs
         GameInputs inputs = read_inputs();       
@@ -544,7 +555,7 @@ int main()
         int dt = t.read_ms();
         if (dt < 100) wait_ms(100 - dt);
     }
-    
+    if (Player.Lives!=0){
     uLCD.filled_rectangle(0,0,127,127, 0x064273);
     uLCD.color(WHITE);
     uLCD.textbackground_color(OceanLight);
@@ -562,6 +573,19 @@ int main()
     wave_file=fopen("/sd/test.wav","r");
     waver.play(wave_file);
     fclose(wave_file);
+    }
+    else{
+    uLCD.filled_rectangle(0,0,127,127, 0x064273);
+    uLCD.color(WHITE);
+    uLCD.textbackground_color(OceanLight);
+    uLCD.text_width(2);
+    uLCD.text_height(2);
+    uLCD.text_bold(true);
+    uLCD.locate(1,2);
+    uLCD.printf("You");
+    uLCD.locate(1,3);
+    uLCD.printf("Died!");
+    }
 }
 
 
