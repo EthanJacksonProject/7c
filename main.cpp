@@ -482,13 +482,14 @@ int main()
     Line2 = "An Okay Game";
     uLCD.textbackground_color(OceanLight);
     while(1){
-        uLCD.locate(0,0);
         uLCD.locate(2, 4);
-        uLCD.text_width(3);
-        uLCD.text_height(3);
-        uLCD.printf(line1);
+        uLCD.text_width(2);
+        uLCD.text_height(2);
+        uLCD.text_bold(true);
+        uLCD.puts(line1);
+        uLCD.text_bold(false);
         uLCD.locate(0,0);
-        uLCD.locate(1,12);
+        uLCD.locate(1,18);
         uLCD.text_width(1);
         uLCD.text_height(1);
         uLCD.printf(Line2);
