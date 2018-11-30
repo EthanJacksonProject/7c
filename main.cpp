@@ -231,7 +231,7 @@ int update_game(int action)
                 Player.game_state = GAME_OVER;
                 break;
             }           
-            if ((Eastern -> type == Fish || Western -> type == Fish || Southern -> type == Fish || Northern -> type == Fish)) {
+            if (Eastern -> type == Fish || Western -> type == Fish || Southern -> type == Fish || Northern -> type == Fish) {
                 Player.Fishes = Player.Fishes + 1;
                 if(Eastern -> type == Fish){
                     map_erase(Player.px+1, Player.y);
@@ -251,6 +251,7 @@ int update_game(int action)
                     return FULL_DRAW;
                 }
                
+            }
         }
 
         case GOD_BUTTON: {
