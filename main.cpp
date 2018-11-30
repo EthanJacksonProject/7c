@@ -22,6 +22,7 @@
 #define GO_UP 5
 #define GO_DOWN 6
 #define GOD_BUTTON 7
+#define GAME_OVER 10
 
 
 //void* KeyGiven = 0;
@@ -64,7 +65,7 @@ int get_action(GameInputs inputs) {
         MapItem* Northern = get_north(Player.px, Player.py);
         if (Eastern -> data != (void*)NULL || Western -> data != (void*)NULL || Southern -> data != (void*)NULL || Northern -> data != (void*)NULL )
             return ACTION_BUTTON;
-        }
+    }
     if(!b3)
         return MENU_BUTTON;
     if(!b2)
@@ -106,37 +107,36 @@ int update_game(int action)
     
     // Do different things based on the each action.
     // You can define functions like "go_up()" that get called for each case.
-    switch(action)
-    {
+    switch(action){
         case GO_UP:{
             MapItem* Northern = get_north(Player.px, Player.py);
             if (Northern -> walkable > 0){
                 Player.y = Player.py - 1;
-                }
-                return REDRAW;       
             }
+            return REDRAW;       
+        }
         case GO_LEFT:{
             MapItem* Eastern = get_east(Player.px, Player.py);
             if (Eastern -> walkable > 0){
                 Player.x = Player.px + 1;
-                }
-                return REDRAW; 
             }
-                    
+            return REDRAW; 
+        }
+
         case GO_DOWN:{
             MapItem* Southern = get_south(Player.px, Player.py);
             if (Southern -> walkable > 0 ){
                 Player.y = Player.py + 1;
-                }  
-                return REDRAW;      
-            }
+            }  
+            return REDRAW;      
+        }
         case GO_RIGHT:{ 
             MapItem* Western = get_west(Player.px, Player.py);
             if (Western -> walkable > 0 ){
                 Player.x = Player.px - 1;
-                } 
-                return REDRAW;  
-            }
+            } 
+            return REDRAW;  
+        }
         case ACTION_BUTTON: {
             MapItem* Eastern = get_east(Player.px, Player.py);
             MapItem* Southern = get_south(Player.px, Player.py);
@@ -151,7 +151,7 @@ int update_game(int action)
                     set_active_map(1);
                     return FULL_DRAW;
                 }
-                }
+            }
             if ((Eastern -> type) == NPC || Western -> type == NPC || Southern -> type == NPC || Northern -> type == NPC){
                 if (Player.has_idol == Yes){
                     char* line1 = "Ahoy! You";
@@ -194,14 +194,18 @@ int update_game(int action)
                 Player.has_idol = Yes;
                 add_no_idol(8,8);
                 return FULL_DRAW;
-                }
+            }
             if ((Eastern -> type == PLANT || Western -> type == PLANT || Southern -> type == PLANT || Northern -> type == PLANT) && (Player.x == 17 || Player.x == 18)&&(Player.has_key==Yes))     {
                 map_erase(17,10);
                 map_erase(18,10);
                 return FULL_DRAW;
-                }           
-           break;
+            } 
+            if ((Eastern -> type == CHEST || Western -> type == CHEST || Southern -> type == CHEST || Northern -> type == CHEST) && Player.has_key == true){
+                Player.game_state = GAME_OVER;
+            }           
+            break;
         }
+
         case GOD_BUTTON: {
             MapItem* Eastern = get_east(Player.px, Player.py);
             MapItem* Southern = get_south(Player.px, Player.py);
@@ -216,7 +220,7 @@ int update_game(int action)
                     set_active_map(1);
                     return FULL_DRAW;
                 }
-                }
+            }
             if ((Eastern -> type) == NPC || Western -> type == NPC || Southern -> type == NPC || Northern -> type == NPC){
                 if (Player.game_state == 100){
                     char* line1 = "Ahoy! You";
@@ -259,42 +263,53 @@ int update_game(int action)
                 Player.has_idol = Yes;
                 add_no_idol(8,8);
                 return FULL_DRAW;
-                }
-                
+            }
+
             if ((Eastern -> type == PLANT || Western -> type == PLANT || Southern -> type == PLANT || Northern -> type == PLANT) ){
                 if(Eastern -> type == PLANT){
                     Eastern -> walkable = true;
-                    return FULL_DRAW;}
+                    return FULL_DRAW;
+                }
                 if(Western -> type == PLANT){
                     Western -> walkable = true;
-                    return FULL_DRAW;}
+                    return FULL_DRAW;
+                }
                 if(Southern -> type == PLANT){
                     Southern -> walkable = true;
-                    return FULL_DRAW;}
+                    return FULL_DRAW;
+                }
                 if(Northern -> type == PLANT){
                     Northern -> walkable = true;
-                    return FULL_DRAW;}
+                    return FULL_DRAW;
                 }
+            }
             if ((Eastern -> type == WALL || Western -> type == WALL || Southern -> type == WALL || Northern -> type == WALL) ){
                 if(Eastern -> type == WALL){
                     Eastern -> walkable = true;
-                    return FULL_DRAW;}
+                    return FULL_DRAW;
+                }
                 if(Western -> type == WALL){
                     Western -> walkable = true;
-                    return FULL_DRAW;}
+                    return FULL_DRAW;
+                }
                 if(Southern -> type == WALL){
                     Southern -> walkable = true;
-                    return FULL_DRAW;}
+                    return FULL_DRAW;
+                }
                 if(Northern -> type == WALL){
                     Northern -> walkable = true;
-                    return FULL_DRAW;}
-                }           
-           break;
+                    return FULL_DRAW;
+                }
+            }
+            if ((Eastern -> type == CHEST || Western -> type == CHEST || Southern -> type == CHEST || Northern -> type == CHEST) && Player.has_key == true){
+                Player.game_state = GAME_OVER;
+            }           
+            break;
         }
         case MENU_BUTTON: {
             uLCD.locate(0, 10);
             uLCD.printf("Menu...");
-        break;
+            break;
         }
     }
     return NO_RESULT;
@@ -310,14 +325,14 @@ void draw_game(int init)
 {
     // Draw game border first
     if(init) draw_border();
-    
+
     // Iterate over all visible map tiles
     for (int i = -5; i <= 5; i++) // Iterate over columns of tiles
     {
         for (int j = -4; j <= 4; j++) // Iterate over one column of tiles
         {
             // Here, we have a given (i,j)
-            
+
             // Compute the current map (x,y) of this tile
             int x = i + Player.x;
             int y = j + Player.y;
@@ -325,7 +340,7 @@ void draw_game(int init)
             // Compute the previous map (px, py) of this tile
             int px = i + Player.px;
             int py = j + Player.py;
-                        
+
             // Compute u,v coordinates for drawing
             int u = (i+5)*11 + 3;
             int v = (j+4)*11 + 15;
@@ -382,7 +397,7 @@ void init_main_map()
         add_plant(i % map_width(), i / map_width());
     }
     pc.printf("plants\r\n");
-        
+
     pc.printf("Adding walls!\r\n");
     add_wall(0,              0,              HORIZONTAL, map_width());
     add_wall(0,              map_height()-1, HORIZONTAL, map_width());
@@ -392,7 +407,7 @@ void init_main_map()
     add_wall(20, 0, -VERTICAL, 10);
     add_wall(15, 10, HORIZONTAL, 2);
     add_wall(19, 10, HORIZONTAL, 2);
-    add_Chest(8, 8);
+    add_Chest(18, 8);
     pc.printf("Walls done!\r\n");
     add_plant(17,10);
     add_plant(18,10);
@@ -403,7 +418,7 @@ void init_main_map()
 void init_quest_map()
 {
     Map* map = set_active_map(1);
-        
+
     add_good_idol(3,3);
     add_good_idol(7,5);
     
@@ -442,8 +457,7 @@ int main()
     draw_game(true);
 
     // Main game loop
-    while(1)
-    {
+    while(1) {
         // Timer to measure game update speed
         Timer t; t.start();
         
@@ -458,26 +472,25 @@ int main()
         uLCD.textbackground_color(BLACK);
         uLCD.printf("X: %2d, Y: %2d", Player.x, Player.y);
         uLCD.textbackground_color(OceanDark);
-
-    
-        // 3b. Check for game over
-        
-          //SOMETHING HERE
-          
+        if (Player.game_state == GAME_OVER)
+            break;
         // 4. Draw frame (draw_game)
         switch (updates)
         {
             case REDRAW:
-                draw_game(false);
-                break;
+            draw_game(false);
+            break;
             case FULL_DRAW:
-                draw_game(true);
-                break;
+            draw_game(true);
+            break;
         }
         // 5. Frame delay
         t.stop();
         int dt = t.read_ms();
         if (dt < 100) wait_ms(100 - dt);
     }
+    uLCD.locate(0,0);
+    uLCD.textbackground_color(BLACK);
+    uLCD.printf("Treasure Found");
 }
 
