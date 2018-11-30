@@ -5,6 +5,7 @@
 #include "graphics.h"
 #include "speech.h"
 #define OceanDark 0x064273
+#define OceanLight 0x7fcdff
 #define WALL    0
 #define PLANT   1
 #define NPC     2
