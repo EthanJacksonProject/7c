@@ -250,7 +250,7 @@ int update_game(int action)
                     map_erase(Player.px, Player.y-1);
                     return FULL_DRAW;
                 }
-               
+
             }
         }
 
@@ -495,7 +495,7 @@ int main()
     // Initialize game state
     set_active_map(0);
     Player.x = Player.y = 3;
- 
+
     uLCD.filled_rectangle(0,0,127,127, 0x064273);
     uLCD.color(WHITE);
     uLCD.textbackground_color(OceanLight);
@@ -503,7 +503,7 @@ int main()
     Player.game_state = 0;
     Player.Lives = 100;
     while(1){
-        
+
         uLCD.locate(2, 2);
         uLCD.text_width(2);
         uLCD.text_height(2);
@@ -569,47 +569,48 @@ int main()
         if (Player.game_state == GAME_OVER)
             break;
         switch (updates){
-            case REDRAW:
-            draw_game(false);
-            break;
-            case FULL_DRAW:
-            draw_game(true);
-            break;
+            case REDRAW:{}
+                draw_game(false);
+                break;}
+            case FULL_DRAW:{
+                draw_game(true);
+                break;}
         }
         t.stop();
         int dt = t.read_ms();
         if (dt < 100) wait_ms(100 - dt);
     }
-    if (Player.Lives > 0){
-    uLCD.filled_rectangle(0,0,127,127, 0x064273);
-    uLCD.color(WHITE);
-    uLCD.textbackground_color(OceanLight);
-    uLCD.text_width(2);
-    uLCD.text_height(2);
-    uLCD.text_bold(true);
-    uLCD.locate(1,2);
-    uLCD.printf("Treasure");
-    uLCD.locate(1,3);
-    uLCD.printf("Found!");
 
-    AnalogOut DACout(p18);
-    wave_player waver(&DACout);
-    FILE *wave_file;
-    wave_file=fopen("/sd/test.wav","r");
-    waver.play(wave_file);
-    fclose(wave_file);
+    if (Player.Lives > 0){
+        uLCD.filled_rectangle(0,0,127,127, 0x064273);
+        uLCD.color(WHITE);
+        uLCD.textbackground_color(OceanLight);
+        uLCD.text_width(2);
+        uLCD.text_height(2);
+        uLCD.text_bold(true);
+        uLCD.locate(1,2);
+        uLCD.printf("Treasure");
+        uLCD.locate(1,3);
+        uLCD.printf("Found!");
+        AnalogOut DACout(p18);
+        wave_player waver(&DACout);
+        FILE *wave_file;
+        wave_file=fopen("/sd/test.wav","r");
+        waver.play(wave_file);
+        fclose(wave_file);
     }
+
     if (Player.Lives == 0){
-    uLCD.filled_rectangle(0,0,127,127, 0x064273);
-    uLCD.color(WHITE);
-    uLCD.textbackground_color(OceanLight);
-    uLCD.text_width(2);
-    uLCD.text_height(2);
-    uLCD.text_bold(true);
-    uLCD.locate(1,2);
-    uLCD.printf("You");
-    uLCD.locate(1,3);
-    uLCD.printf("Died!");
+        uLCD.filled_rectangle(0,0,127,127, 0x064273);
+        uLCD.color(WHITE);
+        uLCD.textbackground_color(OceanLight);
+        uLCD.text_width(2);
+        uLCD.text_height(2);
+        uLCD.text_bold(true);
+        uLCD.locate(1,2);
+        uLCD.printf("You");
+        uLCD.locate(1,3);
+        uLCD.printf("Died!");
     }
 }
 
