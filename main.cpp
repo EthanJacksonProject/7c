@@ -229,25 +229,25 @@ int update_game(int action)
             } 
             if ((Eastern -> type == CHEST || Western -> type == CHEST || Southern -> type == CHEST || Northern -> type == CHEST) && Player.has_key == true){
                 Player.game_state = GAME_OVER;
+                break;
             }           
-            break;
             if ((Eastern -> type == Fish || Western -> type == Fish || Southern -> type == Fish || Northern -> type == Fish)) {
-                Player.Fish = Player.Fish + 1;
+                Player.Fishes = Player.Fishes + 1;
                 if(Eastern -> type == Fish){
-                    map_erase(Player.px, Player.y)
+                    map_erase(Player.px+1, Player.y);
                     return FULL_DRAW;
                 }
                 if(Western -> type == Fish){
-                    map_erase(Player.px-1, Player.y)
+                    map_erase(Player.px-1, Player.y);
                     return FULL_DRAW;
                 }
                 
                 if(Southern -> type == Fish){
-                    map_erase(Player.px, Player.y+1)
+                    map_erase(Player.px, Player.y+1);
                     return FULL_DRAW;
                 }
                 if(Northern -> type == Fish){
-                    map_erase(Player.px, Player.y-1)
+                    map_erase(Player.px, Player.y-1);
                     return FULL_DRAW;
                 }
                
