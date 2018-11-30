@@ -467,6 +467,7 @@ void init_main_map()
     add_cave(7,7);
 
     add_Fish(1,1);
+    add_Rock(2, 7);
 
     print_map();
 }
@@ -573,9 +574,7 @@ int main()
 
         uLCD.locate(0,15);
         uLCD.textbackground_color(OceanDark);
-        uLCD.printf("Health: %d", Player.Lives);
-        uLCD.locate(8,15);
-        uLCD.printf("Fish: %d/5", Player.Fishes);
+        uLCD.printf("H: %d Fish: %d/5", Player.Lives, Player.Fishes);
 
         if (Player.game_state == GAME_OVER)
             break;
