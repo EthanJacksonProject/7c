@@ -273,7 +273,7 @@ int update_game(int action)
                     return FULL_DRAW;
                 }
             }
-            if ((Eastern -> type) == NPC || Western -> type == NPC || Southern -> type == NPC || Northern -> type == NPC){
+            /*if ((Eastern -> type) == NPC || Western -> type == NPC || Southern -> type == NPC || Northern -> type == NPC){
                 if (Player.game_state == 100){
                     char* line1 = "Ahoy! You";
                     char* Line2 = "have got me...";
@@ -293,24 +293,10 @@ int update_game(int action)
                     Line2 = "";
                     speech(line1, Line2);
                     Player.has_key = Yes;
-                    return FULL_DRAW;
-                } else {
-                    char* line1 = "Ahoy, Matey!";
-                    char* Line2 = "Thar be a fake...";
-                    speech(line1, Line2);
-                    line1 = "idol in that thar";
-                    Line2 = "cave! Bring it...";
-                    speech(line1, Line2);
-                    line1 = "here & I'll give";
-                    Line2 = "you a map to...";
-                    speech(line1, Line2);
-                    line1 = "a treasure";
-                    Line2 = "beyond belief...";
-                    speech(line1, Line2);
                     Player.game_state = 2;
                     return FULL_DRAW;
-                }
-            }
+                } 
+            }*/
             if ((Eastern -> type) == Bad_Idol || Western -> type == Bad_Idol || Southern -> type == Bad_Idol || Northern -> type == Bad_Idol){
                 Player.has_idol = Yes;
                 add_no_idol(8,8);
@@ -594,7 +580,7 @@ int main()
         int dt = t.read_ms();
         if (dt < 100) wait_ms(100 - dt);
     }
-    if (Player.Lives!=0){
+    if (Player.Lives > 0){
     uLCD.filled_rectangle(0,0,127,127, 0x064273);
     uLCD.color(WHITE);
     uLCD.textbackground_color(OceanLight);
@@ -613,7 +599,7 @@ int main()
     waver.play(wave_file);
     fclose(wave_file);
     }
-    else{
+    if{
     uLCD.filled_rectangle(0,0,127,127, 0x064273);
     uLCD.color(WHITE);
     uLCD.textbackground_color(OceanLight);
