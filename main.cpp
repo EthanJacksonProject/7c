@@ -438,7 +438,11 @@ void init_main_map()
     add_npc(5,5);
     add_cave(7,7);
 
-    add_Rock(9,9);
+    for(int i = map_width() + 8; i < map_area(); i += 34)
+    {
+        add_Rock(i % map_width(), i / map_width());
+    }
+
     print_map();
 }
 void init_quest_map()
