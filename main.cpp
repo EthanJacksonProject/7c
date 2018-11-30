@@ -214,10 +214,14 @@ int update_game(int action)
             if (((Eastern -> type == CAVE) || (Western -> type == CAVE) || (Southern -> type == CAVE) || (Northern -> type == CAVE))) {
                 if(get_active_map() == (get_map(1))){
                     set_active_map(0);
+                    Player.x = 8;
+                    Player.y = 7;
                     return FULL_DRAW;
                 }
                 if(get_active_map() == (get_map(0))){
                     set_active_map(1);
+                    Player.x = 3;
+                    Player.y = 2;
                     return FULL_DRAW;
                 }
             }
@@ -419,7 +423,7 @@ void init_quest_map()
 {
     Map* map = set_active_map(1);
 
-    for(int i = map_width() + 3; i < map_area(); i += 12){
+    for(int i = map_width() + 3; i < map_area(); i += 17){
         add_good_idol(i % map_width(), i / map_width());
     }
     
