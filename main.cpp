@@ -260,7 +260,7 @@ int update_game(int action)
             MapItem* Southern = get_south(Player.px, Player.py);
             MapItem* Western = get_west(Player.px, Player.py);
             MapItem* Northern = get_north(Player.px, Player.py);
-            if (((Eastern -> type == CAVE) || (Western -> type == CAVE) || (Southern -> type == CAVE) || (Northern -> type == CAVE))) {
+            if (((Eastern -> type == CAVE) || (Western -> type == CAVE) || (Southern -> type == CAVE) || (Northern -> type == CAVE)) && Player.has_cave == Yes) {
                 if(get_active_map() == (get_map(1))){
                     set_active_map(0);
                     Player.x = 8;
