@@ -478,7 +478,7 @@ int main()
     uLCD.filled_rectangle(0,0,127,127, 0x064273);
     line1 = "7 C's";
     while(1){
-        uLCD.text_string(line1, 1, 4, 12, WHITE);
+        uLCD.text_string(line1, 1, 4, FONT_12X16 , WHITE);
         GameInputs inputs = read_inputs();       
         int action = get_action(inputs);
         if (action == ACTION_BUTTON)
