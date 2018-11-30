@@ -275,7 +275,7 @@ int update_game(int action)
                     return FULL_DRAW;
                 }
             }
-            /*if ((Eastern -> type) == NPC || Western -> type == NPC || Southern -> type == NPC || Northern -> type == NPC){
+            if ((Eastern -> type) == NPC || Western -> type == NPC || Southern -> type == NPC || Northern -> type == NPC){
                 if (Player.game_state == 100){
                     char* line1 = "Ahoy! You";
                     char* Line2 = "have got me...";
@@ -344,7 +344,8 @@ int update_game(int action)
                     Northern -> walkable = true;
                     return FULL_DRAW;
                 }
-            }         
+            }
+            break;         
         }
         case MENU_BUTTON: {
             uLCD.locate(0, 10);
