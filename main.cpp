@@ -478,18 +478,26 @@ int main()
  
     AnalogOut DACout(p18);
     wave_player waver(&DACout);
- 
- 
-   FILE *wave_file;
-   wave_file=fopen("/sd/test.wav","r");
-   waver.play(wave_file);
-   fclose(wave_file); 
+    FILE *wave_file;
+    wave_file=fopen("/sd/test.wav","r");
+    waver.play(wave_file);
+    fclose(wave_file); 
 
     uLCD.filled_rectangle(0,0,127,127, 0x064273);
     uLCD.color(WHITE);
     uLCD.textbackground_color(OceanLight);
     int ani = 0;
+    int played = 0;
     while(1){
+        if (!played){
+            AnalogOut DACout(p18);
+            wave_player waver(&DACout);
+            FILE *wave_file;
+            wave_file=fopen("/sd/test.wav","r");
+            waver.play(wave_file);
+            fclose(wave_file);
+            played = 1;
+        }
         uLCD.locate(2, 2);
         uLCD.text_width(2);
         uLCD.text_height(2);
