@@ -10,7 +10,7 @@
 
 // Hardware initialization: Instantiate all the things!
 uLCD_4DGL uLCD(p9,p10,p11);             // LCD Screen (tx, rx, reset)
-//SDFileSystem sd(p5, p6, p7, p8, "sd");  // SD Card(mosi, miso, sck, cs)
+SDFileSystem sd(p5, p6, p7, p8, "sd");  // SD Card(mosi, miso, sck, cs)
 Serial pc(USBTX,USBRX);                 // USB Console (tx, rx)
 MMA8452 acc(p28, p27, 100000);        // Accelerometer (sda, sdc, rate)
 DigitalIn button1(p21);                 // Pushbuttons (pin)

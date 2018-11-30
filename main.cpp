@@ -476,6 +476,15 @@ int main()
     set_active_map(0);
     Player.x = Player.y = 3;
  
+    AnalogOut DACout(p18);
+    wave_player waver(&DACout);
+ 
+ 
+   FILE *wave_file;
+   wave_file=fopen("/sd/test.wav","r");
+   waver.play(wave_file);
+   fclose(wave_file); 
+
     uLCD.filled_rectangle(0,0,127,127, 0x064273);
     uLCD.color(WHITE);
     uLCD.textbackground_color(OceanLight);
