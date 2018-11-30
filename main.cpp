@@ -476,6 +476,13 @@ int main()
     set_active_map(0);
     Player.x = Player.y = 3;
 
+    draw_Screen();
+    while(1)
+        GameInputs inputs = read_inputs();       
+        int action = get_action(inputs);
+        if (action == ACTION_BUTTON)
+            break;
+
     // Initial drawing
     draw_game(true);
 
