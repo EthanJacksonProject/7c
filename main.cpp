@@ -169,6 +169,17 @@ int update_game(int action)
                 }
             }
             if ((Eastern -> type) == NPC || Western -> type == NPC || Southern -> type == NPC || Northern -> type == NPC){
+                if(Player.Fishes == 5){
+                    char* line1 = "Shiver me ";
+                    char* Line2 = "Timbers!";
+                    speech(line1, Line2);
+                    line1 = "There's a large";
+                    Line2 = "Catch! Hare be";
+                    speech(line1, Line2);
+                    line1 = "yer map to";
+                    Line2 = "the treasure!";
+                    speech(line1, Line2);
+                }
                 if (Player.has_idol == Yes){
                     char* line1 = "Ahoy! You";
                     char* Line2 = "have got me...";
@@ -455,7 +466,12 @@ void init_main_map()
     add_npc(5,5);
     add_cave(7,7);
 
-    add_Fish(1,1);
+    add_Fish(3,4);
+    add_Fish(3,6);
+    add_Fish(3,8);
+    add_Fish(3,10);
+    add_Fish(3,12);
+
     add_Rock(2, 7);
 
     print_map();
