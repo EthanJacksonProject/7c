@@ -419,7 +419,7 @@ void init_quest_map()
 {
     Map* map = set_active_map(1);
 
-    for(int i = map_width() + 3; i < map_area(); i += 15){
+    for(int i = map_width() + 3; i < map_area(); i += 12){
         add_good_idol(i % map_width(), i / map_width());
     }
     
