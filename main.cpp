@@ -476,7 +476,7 @@ int main()
     set_active_map(0);
     Player.x = Player.y = 3;
 
-    draw_Screen();
+    uLCD.filled_rectangle(0,0,127,127, 0x064273);
     while(1){
         GameInputs inputs = read_inputs();       
         int action = get_action(inputs);
