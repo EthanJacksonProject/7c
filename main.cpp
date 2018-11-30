@@ -579,7 +579,6 @@ int main()
         // 3. Update game (update_game)
         int updates = update_game(action);
         uLCD.locate(0,0);
-        uLCD.printf("%d", Player.game_state);
         uLCD.textbackground_color(OceanDark);
         uLCD.printf("X: %2d, Y: %2d", Player.x, Player.y);
 
