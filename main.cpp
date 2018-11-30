@@ -14,6 +14,7 @@
 #define Good_Idol    5
 #define Bad_Idol    6
 #define Rock    8
+#define Fish 9
 #define No 0
 #define Yes 1
 #define NO_ACTION 0
@@ -48,7 +49,7 @@ struct {
     int has_idol;
     int game_state;
     int Lives;
-    int Fish;
+    int Fishes;
 } Player;
 
 struct {
@@ -573,7 +574,7 @@ int main()
         uLCD.textbackground_color(OceanDark);
         uLCD.printf("Health: %d", Player.Lives);
         uLCD.locate(8,15);
-        uLCD.printf("Fish: %d/5", Player.Fish);
+        uLCD.printf("Fish: %d/5", Player.Fishes);
 
         if (Player.game_state == GAME_OVER)
             break;
