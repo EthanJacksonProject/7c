@@ -599,7 +599,7 @@ int main()
     waver.play(wave_file);
     fclose(wave_file);
     }
-    if{
+    if (Player.Lives == 0){
     uLCD.filled_rectangle(0,0,127,127, 0x064273);
     uLCD.color(WHITE);
     uLCD.textbackground_color(OceanLight);
