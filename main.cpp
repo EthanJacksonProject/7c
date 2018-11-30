@@ -498,13 +498,13 @@ int main()
         if (action == ACTION_BUTTON)
             break;
         if (!ani){
-            uLCD.locate(1,5);
+            uLCD.locate(1,2);
             uLCD.printf("Press A");
             ani = !ani;
-            wait_ms(200);
+            wait_ms(500);
         } else{
-            uLCD.filled_rectangle(20, 50, 127, 70, 0x064273);
-            wait_ms(200);
+            uLCD.filled_rectangle(20, 50, 127, 70, WHITE);
+            wait_ms(500);
         }
     }
     // Initial drawing
