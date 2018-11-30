@@ -438,10 +438,9 @@ void init_main_map()
     add_npc(5,5);
     add_cave(7,7);
 
-    for(int i = map_width() + 18; i < map_area(); i += 39)
-    {
-        add_Rock(i % map_width(), i / map_width());
-    }
+    add_Rock(1,1);
+    add_Rock(2,12);
+    add_Rock(10, 18);
 
     print_map();
 }
@@ -549,7 +548,7 @@ int main()
 
         uLCD.locate(0,15);
         uLCD.textbackground_color(OceanDark);
-        uLCD.printf("Health: %2d%", Player.Lives);
+        uLCD.printf("Health: %2d", Player.Lives);
 
         if (Player.game_state == GAME_OVER)
             break;
