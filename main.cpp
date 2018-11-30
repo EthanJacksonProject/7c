@@ -482,6 +482,7 @@ int main()
         uLCD.locate(6, 4);
         uLCD.text_width(2);
         uLCD.text_height(2);
+        uLCD.color(WHITE)
         uLCD.textbackground_color(OceanLight);
         uLCD.printf(line1);
         GameInputs inputs = read_inputs();       
@@ -491,7 +492,9 @@ int main()
     }
     // Initial drawing
     draw_game(true);
-
+    uLCD.locate(0, 0);
+    uLCD.text_width(1);
+    uLCD.text_height(1);
     // Main game loop
     while(1) {
         // Timer to measure game update speed
