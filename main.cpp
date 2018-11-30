@@ -478,7 +478,11 @@ int main()
     uLCD.filled_rectangle(0,0,127,127, 0x064273);
     line1 = "7 C's";
     while(1){
-        uLCD.text_string(line1, 1, 4, FONT_12X16 , WHITE);
+        uLCD.locate(6, 4);
+        uLCD.text_width(2);
+        uLCD.text_height(2);
+        uLCD.textbackground_color(OceanLight);
+        uLCD.printf(line1);
         GameInputs inputs = read_inputs();       
         int action = get_action(inputs);
         if (action == ACTION_BUTTON)
@@ -500,14 +504,11 @@ int main()
         // 3. Update game (update_game)
         int updates = update_game(action);
         uLCD.locate(0,0);
-        uLCD.textbackground_color(BLACK);
-        uLCD.printf("X: %2d, Y: %2d", Player.x, Player.y);
         uLCD.textbackground_color(OceanDark);
+        uLCD.printf("X: %2d, Y: %2d", Player.x, Player.y);
         if (Player.game_state == GAME_OVER)
             break;
-        // 4. Draw frame (draw_game)
-        switch (updates)
-        {
+        switch (updates){
             case REDRAW:
             draw_game(false);
             break;
@@ -515,13 +516,12 @@ int main()
             draw_game(true);
             break;
         }
-        // 5. Frame delay
         t.stop();
         int dt = t.read_ms();
         if (dt < 100) wait_ms(100 - dt);
     }
     uLCD.locate(0,0);
-    uLCD.textbackground_color(BLACK);
+    uLCD.textbackground_color(OceanDark);
     uLCD.printf("Treasure Found");
 }
 
