@@ -528,9 +528,10 @@ int main()
         MapItem* Western = get_west(Player.px, Player.py);
         MapItem* Northern = get_north(Player.px, Player.py);
         if ((Eastern -> type == Rock || Western -> type == Rock || Southern -> type == Rock || Northern -> type == Rock) ){
-            Player.Lives = Player.Lives - 1;
-        if(Player.Lives == 0)
+            Player.Lives = Player.Lives - 1;}
+        if(Player.Lives == 0){
             break;
+        }
         // Actuall do the game update:
         // 1. Read inputs
         GameInputs inputs = read_inputs();       
