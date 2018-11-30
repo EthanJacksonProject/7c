@@ -438,7 +438,7 @@ void init_main_map()
     add_npc(5,5);
     add_cave(7,7);
 
-    for(int i = map_width() + 8; i < map_area(); i += 34)
+    for(int i = map_width() + 9; i < map_area(); i += 39)
     {
         add_Rock(i % map_width(), i / map_width());
     }
