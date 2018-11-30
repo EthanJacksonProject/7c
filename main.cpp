@@ -22,7 +22,8 @@
 #define GO_UP 5
 #define GO_DOWN 6
 #define GOD_BUTTON 7
-
+char* line1;
+char* Line2;
 
 
 //void* KeyGiven = 0;
@@ -104,8 +105,6 @@ int update_game(int action)
     // Save player previous location before updating
     Player.px = Player.x;
     Player.py = Player.y;
-    char* line1;
-    char* Line2;
     
     // Do different things based on the each action.
     // You can define functions like "go_up()" that get called for each case.
@@ -477,7 +476,9 @@ int main()
     Player.x = Player.y = 3;
 
     uLCD.filled_rectangle(0,0,127,127, 0x064273);
+    line1 = "7 C's";
     while(1){
+        uLCD.text_string(Line1, 1, 4, 12, WHITE);
         GameInputs inputs = read_inputs();       
         int action = get_action(inputs);
         if (action == ACTION_BUTTON)
@@ -523,4 +524,5 @@ int main()
     uLCD.textbackground_color(BLACK);
     uLCD.printf("Treasure Found");
 }
+
 
