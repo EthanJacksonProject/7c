@@ -477,10 +477,9 @@ int main()
     Player.x = Player.y = 3;
 
     uLCD.filled_rectangle(0,0,127,127, 0x064273);
-    line1 = "7 C's";
     uLCD.color(WHITE);
-    Line2 = "An Okay Game";
     uLCD.textbackground_color(OceanLight);
+    int ani = 0;
     while(1){
         uLCD.locate(2, 2);
         uLCD.text_width(2);
@@ -493,11 +492,20 @@ int main()
         uLCD.locate(1,5);
         uLCD.printf("An Okay");
         uLCD.locate(2,6);
-        uLCD.printf("Game!");
+        uLCD.printf(" Game! ");
         GameInputs inputs = read_inputs();      
         int action = get_action(inputs);
         if (action == ACTION_BUTTON)
             break;
+        if (!ani){
+            uLCD.locate(1,5);
+            uLCD.printf("Press A");
+            ani = !ani;
+            wait_ms(200);
+        } else{
+            uLCD.filled_rectangle(20, 50, 127, 70, 0x064273);
+            wait_ms(200);
+        }
     }
     // Initial drawing
     draw_game(true);
