@@ -147,10 +147,14 @@ int update_game(int action)
             if (((Eastern -> type == CAVE) || (Western -> type == CAVE) || (Southern -> type == CAVE) || (Northern -> type == CAVE)) && Player.game_state > 1) {
                 if(get_active_map() == (get_map(1))){
                     set_active_map(0);
+                    Player.x = 8;
+                    Player.y = 7;
                     return FULL_DRAW;
                 }
                 if(get_active_map() == (get_map(0))){
                     set_active_map(1);
+                    Player.x = 3;
+                    Player.y = 2;
                     return FULL_DRAW;
                 }
             }
