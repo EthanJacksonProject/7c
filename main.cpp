@@ -260,7 +260,7 @@ int update_game(int action)
             MapItem* Southern = get_south(Player.px, Player.py);
             MapItem* Western = get_west(Player.px, Player.py);
             MapItem* Northern = get_north(Player.px, Player.py);
-            if (((Eastern -> type == CAVE) || (Western -> type == CAVE) || (Southern -> type == CAVE) || (Northern -> type == CAVE)) && Player.has_cave == Yes) {
+            /*if (((Eastern -> type == CAVE) || (Western -> type == CAVE) || (Southern -> type == CAVE) || (Northern -> type == CAVE)) && Player.has_cave == Yes) {
                 if(get_active_map() == (get_map(1))){
                     set_active_map(0);
                     Player.x = 8;
@@ -297,12 +297,16 @@ int update_game(int action)
                     Player.game_state = 2;
                     return FULL_DRAW;
                 } 
-            }*/
+            }
             if ((Eastern -> type) == Bad_Idol || Western -> type == Bad_Idol || Southern -> type == Bad_Idol || Northern -> type == Bad_Idol){
                 Player.has_idol = Yes;
                 add_no_idol(8,8);
                 return FULL_DRAW;
-            }
+            }*/
+            if ((Eastern -> type == CHEST || Western -> type == CHEST || Southern -> type == CHEST || Northern -> type == CHEST) ){
+                Player.game_state = GAME_OVER;
+                break;
+            }  
 
             if ((Eastern -> type == PLANT || Western -> type == PLANT || Southern -> type == PLANT || Northern -> type == PLANT) ){
                 if(Eastern -> type == PLANT){
@@ -339,11 +343,7 @@ int update_game(int action)
                     Northern -> walkable = true;
                     return FULL_DRAW;
                 }
-            }
-            if ((Eastern -> type == CHEST || Western -> type == CHEST || Southern -> type == CHEST || Northern -> type == CHEST) ){
-                Player.game_state = GAME_OVER;
-            }           
-            break;
+            }         
         }
         case MENU_BUTTON: {
             uLCD.locate(0, 10);
