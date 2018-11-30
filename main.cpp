@@ -227,7 +227,7 @@ int update_game(int action)
                 map_erase(18,10);
                 return FULL_DRAW;
             } 
-            if ((Eastern -> type == CHEST || Western -> type == CHEST || Southern -> type == CHEST || Northern -> type == CHEST) && (Player.has_key == true){
+            if ((Eastern -> type == CHEST || Western -> type == CHEST || Southern -> type == CHEST || Northern -> type == CHEST) && (Player.has_key == true)){
                 Player.game_state = GAME_OVER;
                 break;
             }           
@@ -307,7 +307,7 @@ int update_game(int action)
                     line1 = "a treasure";
                     Line2 = "beyond belief...";
                     speech(line1, Line2);
-                    Player.game_state = 100;
+                    Player.game_state = 2;
                     return FULL_DRAW;
                 }
             }
@@ -572,6 +572,7 @@ int main()
         // 3. Update game (update_game)
         int updates = update_game(action);
         uLCD.locate(0,0);
+        uLCD.printf("%d", Player.game_state);
         uLCD.textbackground_color(OceanDark);
         uLCD.printf("X: %2d, Y: %2d", Player.x, Player.y);
 
