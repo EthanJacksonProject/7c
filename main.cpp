@@ -546,6 +546,11 @@ int main()
         uLCD.locate(0,0);
         uLCD.textbackground_color(OceanDark);
         uLCD.printf("X: %2d, Y: %2d", Player.x, Player.y);
+
+        uLCD.locate(0,15);
+        uLCD.textbackground_color(OceanDark);
+        uLCD.printf("Lives: %2d", Player.Lives);
+
         if (Player.game_state == GAME_OVER)
             break;
         switch (updates){
