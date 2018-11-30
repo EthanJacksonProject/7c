@@ -227,7 +227,7 @@ int update_game(int action)
                 map_erase(18,10);
                 return FULL_DRAW;
             } 
-            if ((Eastern -> type == CHEST || Western -> type == CHEST || Southern -> type == CHEST || Northern -> type == CHEST) && Player.has_key == true){
+            if ((Eastern -> type == CHEST || Western -> type == CHEST || Southern -> type == CHEST || Northern -> type == CHEST) && (Player.has_key == true){
                 Player.game_state = GAME_OVER;
                 break;
             }           
@@ -514,6 +514,7 @@ int main()
     uLCD.color(WHITE);
     uLCD.textbackground_color(OceanLight);
     int ani = 0;
+    Player.game_state = 0;
     Player.Lives = 100;
     while(1){
         
