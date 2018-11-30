@@ -2,16 +2,6 @@
 #include "globals.h"
 #include "graphics.h"
 
-#define WALL    0
-#define PLANT   1
-#define NPC     2
-#define CAVE    3
-#define Good_Idol    4
-#define Bad_Idol    5
-
-#define No 0
-#define Yes 1
-
 void* KeyGiven = 0;
 void* IdolTaken = 0;
 
