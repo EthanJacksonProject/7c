@@ -253,6 +253,7 @@ int update_game(int action)
                 }
 
             }
+            break;
         }
 
         case GOD_BUTTON: {
