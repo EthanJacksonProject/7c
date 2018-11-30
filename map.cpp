@@ -232,7 +232,7 @@ void add_Rock(int x, int y){
 void add_Fish(int x, int y){
     MapItem* w1 = (MapItem*) malloc(sizeof(MapItem));
     w1->type = Fish;
-    w1->draw = draw_good_idol;
+    w1->draw = draw_Fish;
     w1->walkable = false;
     w1->data = NULL;
     void* val = insertItem(get_active_map()->items, XY_KEY(x, y), w1);

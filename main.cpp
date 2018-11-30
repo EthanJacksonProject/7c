@@ -179,6 +179,8 @@ int update_game(int action)
                     line1 = "yer map to";
                     Line2 = "the treasure!";
                     speech(line1, Line2);
+                    Player.has_key = Yes;
+                    return FULL_DRAW;
                 }
                 if (Player.has_idol == Yes){
                     char* line1 = "Ahoy! You";
@@ -466,11 +468,11 @@ void init_main_map()
     add_npc(5,5);
     add_cave(7,7);
 
-    add_Fish(3,4);
-    add_Fish(3,6);
-    add_Fish(3,8);
-    add_Fish(3,10);
-    add_Fish(3,12);
+    add_Fish(12,20);
+    add_Fish(13,23);
+    add_Fish(11,17);
+    add_Fish(10,20);
+    add_Fish(13,20);
 
     add_Rock(2, 7);
 
