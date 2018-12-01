@@ -372,6 +372,7 @@ int update_game(int action)
             uLCD.printf("1 (NA) 2 (MENU)");
             uLCD.locate(0,4);
             uLCD.printf("3 (GOD) 4 (ACTION)");
+            wait_ms(5000);
             return FULL_DRAW;
         }
     }
