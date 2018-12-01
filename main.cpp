@@ -366,12 +366,13 @@ int update_game(int action)
             uLCD.textbackground_color(OceanLight);
             uLCD.text_width(1);
             uLCD.text_height(1);
-            uLCD.locate(1,2);
+            uLCD.locate(0,2);
             uLCD.printf("Button Layout:");
-            uLCD.locate(1,3);
+            uLCD.locate(0,3);
             uLCD.printf("1 (NA) 2 (MENU)");
+            uLCD.locate(0,4);
             uLCD.printf("3 (GOD) 4 (ACTION)");
-            break;
+            return FULL_DRAW;
         }
     }
     return NO_RESULT;
