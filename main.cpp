@@ -361,8 +361,16 @@ int update_game(int action)
             break;         
         }
         case MENU_BUTTON: {
-            uLCD.locate(0, 10);
-            uLCD.printf("Menu...");
+            uLCD.filled_rectangle(0,0,127,127, 0x064273);
+            uLCD.color(WHITE);
+            uLCD.textbackground_color(OceanLight);
+            uLCD.text_width(1);
+            uLCD.text_height(1);
+            uLCD.locate(1,2);
+            uLCD.printf("Button Layout:");
+            uLCD.locate(1,3);
+            uLCD.printf("1 (NA) 2 (MENU)");
+            uLCD.printf("3 (GOD) 4 (ACTION)");
             break;
         }
     }
