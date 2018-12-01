@@ -474,6 +474,8 @@ void init_main_map()
     add_Fish(10,20);
     add_Fish(13,20);
 
+    add_Rock(13, 17);
+
     add_Rock(2, 7);
 
     print_map();
