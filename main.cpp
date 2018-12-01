@@ -482,7 +482,7 @@ void init_main_map()
     add_Fish(15,23);
     add_Fish(11,25);
     add_Fish(10,20);
-    add_Fish(13,20);
+    add_Fish(13,22);
 
     add_Rock(13, 17);
 
@@ -534,7 +534,7 @@ int main()
     uLCD.textbackground_color(OceanLight);
     int ani = 0;
     Player.game_state = 0;
-    Player.Lives = 100;
+    Player.Lives = 99;
     while(1){
 
         uLCD.locate(2, 2);
